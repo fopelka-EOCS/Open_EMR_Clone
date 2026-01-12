@@ -79,6 +79,7 @@ final class EventAuditLoggerTest extends TestCase
         'atna_audit_localcert',
         'atna_audit_cacert',
         'enable_atna_audit',
+        'skipAuditLog',
         'adodb'
     ];
 
@@ -2851,8 +2852,6 @@ final class EventAuditLoggerTest extends TestCase
             // Call logHttpRequest - should return early without logging
             $loggerMock->logHttpRequest();
         } finally {
-            // Clean up
-            unset($GLOBALS['skipAuditLog']);
             // Restore original server variables
             if (isset($this->originalServer['REQUEST_METHOD'])) {
                 $_SERVER['REQUEST_METHOD'] = $this->originalServer['REQUEST_METHOD'];
@@ -2948,8 +2947,7 @@ final class EventAuditLoggerTest extends TestCase
             // Call auditSQLEvent with a query that would normally be logged
             $loggerMock->auditSQLEvent("SELECT * FROM facility WHERE id = 1", true);
         } finally {
-            // Clean up
-            unset($GLOBALS['skipAuditLog']);
+            // No cleanup needed - framework handles $GLOBALS restoration
         }
     }
 }
