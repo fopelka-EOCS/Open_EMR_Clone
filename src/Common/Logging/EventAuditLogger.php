@@ -526,12 +526,6 @@ MSG;
     {
         $user =  $_SESSION['authUser'] ?? "";
 
-        // Skip if audit logging is disabled via skipAuditLog flag (e.g., for health checks)
-        global $skipAuditLog;
-        if (!empty($skipAuditLog)) {
-            return;
-        }
-
         /* Don't log anything if the audit logging is not enabled. Exception for "emergency" users */
         if (empty($GLOBALS['enable_auditlog'])) {
             if (empty($GLOBALS['gbl_force_log_breakglass']) || !$this->isBreakglassUser($user)) {
@@ -859,12 +853,6 @@ MSG;
      */
     public function logHttpRequest()
     {
-        // Skip if audit logging is disabled via skipAuditLog flag (e.g., for health checks)
-        global $skipAuditLog;
-        if (!empty($skipAuditLog)) {
-            return;
-        }
-
         // Skip if audit logging or http request logging is disabled
         if (empty($GLOBALS['enable_auditlog']) || empty($GLOBALS['audit_events_http-request'])) {
             return;
