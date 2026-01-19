@@ -22,11 +22,20 @@ CREATE TABLE IF NOT EXISTS `oe_faxsms_queue` (
 `called_number` tinytext,
 `mime` tinytext,
 `details_json` longtext,
+`status` varchar(50) DEFAULT NULL COMMENT 'Fax status (queued, sent, delivered, received, failed, etc)',
+`direction` varchar(20) DEFAULT 'inbound' COMMENT 'inbound or outbound',
+`site_id` varchar(63) DEFAULT 'default' COMMENT 'Site identifier for multi-site support',
+`patient_id` int(11) DEFAULT NULL COMMENT 'Patient ID if assigned',
+`document_id` int(11) DEFAULT NULL COMMENT 'OpenEMR document ID if stored',
+`media_path` longtext COMMENT 'Path to stored fax media file',
 PRIMARY KEY (`id`),
-KEY `uid` (`uid`,`receive_date`)
+KEY `uid` (`uid`,`receive_date`),
+KEY `job_id` (`job_id`(255)),
+KEY `site_id` (`site_id`),
+KEY `patient_id` (`patient_id`)
 ) ENGINE=InnoDB COMMENT='Fax queue';
 
-#IfNotRow categories name FAX
+# IfNotRow categories name FAX
 SET @max_rght = (SELECT MAX(rght) FROM categories);
 INSERT INTO categories(`id`,`name`, `value`, `parent`, `lft`, `rght`, `aco_spec`) select (select MAX(id) from categories) + 1, 'FAX', '', 1, @max_rght, @max_rght + 1, 'patients|docs' from categories where name = 'Categories';
 UPDATE categories SET rght = rght + 2 WHERE name = 'Categories';
