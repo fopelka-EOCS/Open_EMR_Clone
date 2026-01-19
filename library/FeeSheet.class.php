@@ -94,7 +94,7 @@ class FeeSheet
 
     function __construct($pid = 0, $encounter = 0)
     {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
         if (empty($pid)) {
             $pid = $GLOBALS['pid'];
         }
@@ -184,7 +184,7 @@ class FeeSheet
   //
     public function findProvider()
     {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
 
         $find_provider = sqlQuery(
             "SELECT provider_id FROM form_encounter " .
@@ -289,7 +289,7 @@ class FeeSheet
   //
     public function logFSMessage($action, $newvalue = '', $logarr = null)
     {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
         $user_notes = $this->encounter;
         if (is_array($logarr)) {
             array_unshift($logarr, $newvalue);
@@ -313,7 +313,7 @@ class FeeSheet
   //
     public function visitChecksum($saved = false)
     {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
         $rowb = sqlQuery(
             "SELECT BIT_XOR(CRC32(CONCAT_WS(',', " .
             "id, code, modifier, units, fee, authorized, provider_id, ndc_info, justify, billed" .
@@ -403,7 +403,7 @@ class FeeSheet
     //
     public function insert_lbf_item($field_id, $field_value)
     {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
         sqlInsert(
             "INSERT INTO shared_attributes (pid, encounter, last_update, user_id, field_id, field_value) " .
             "VALUES (?, ?, 'NOW()', ?, ?, ?)",
@@ -926,7 +926,7 @@ class FeeSheet
         $default_warehouse = null,
         $mark_as_closed = false
     ) {
-        $session = SessionWrapperFactory::getInstance()->getWrapper();
+        $session = SessionWrapperFactory::getInstance()->getActiveSession();
         global $code_types;
 
         if (isset($main_provid) && $main_supid == $main_provid) {
