@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-// total 8324 errors
+// total 8334 errors
 
 $ignoreErrors = [];
 $ignoreErrors[] = [
@@ -485,32 +485,52 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$options_acl_sections might not be defined\\.$#',
-    'count' => 1,
+    'count' => 2,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$options_aco_sections might not be defined\\.$#',
-    'count' => 1,
+    'count' => 2,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$options_aro_sections might not be defined\\.$#',
-    'count' => 1,
+    'count' => 2,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$options_axo_sections might not be defined\\.$#',
+    'count' => 2,
+    'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
+];
+$ignoreErrors[] = [
+    'message' => '#^Variable \\$options_selected_aco might not be defined\\.$#',
+    'count' => 1,
+    'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
+];
+$ignoreErrors[] = [
+    'message' => '#^Variable \\$options_selected_aro might not be defined\\.$#',
+    'count' => 1,
+    'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
+];
+$ignoreErrors[] = [
+    'message' => '#^Variable \\$options_selected_axo might not be defined\\.$#',
+    'count' => 1,
+    'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
+];
+$ignoreErrors[] = [
+    'message' => '#^Variable \\$selected_aco_array might not be defined\\.$#',
     'count' => 1,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$selected_aro_array might not be defined\\.$#',
-    'count' => 2,
+    'count' => 3,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
     'message' => '#^Variable \\$selected_axo_array might not be defined\\.$#',
-    'count' => 2,
+    'count' => 3,
     'path' => __DIR__ . '/../../gacl/admin/acl_admin.php',
 ];
 $ignoreErrors[] = [
